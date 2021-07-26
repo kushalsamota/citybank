@@ -30,3 +30,14 @@ podman ps -a
 podman rm -f mysqlcontainer
 podman rm -f $(podman ps -a -q)
 podman system df
+
+podman run -d --name apachecontainer httpd
+podman exec -it apachecontainer bash
+hostname
+exit
+podman rm -f apachecontainer
+podman run -d --name apachecontainer --hostname apache httpd
+podman exec -it apachecontainer bash
+hostname
+exit
+podman rm -f apachecontainer

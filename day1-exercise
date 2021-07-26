@@ -1,0 +1,32 @@
+podman rmi $(podman images -a -q)
+podman pull centos
+podman run -itd --name centoscontainer centos
+podman ps
+podman ps -a
+podman ps --help
+podman inspect centoscontainer
+podman stop centoscontainer
+podman ps -a
+podman start centoscontainer
+podman ps -a
+podman rm -f centoscontainer
+podman pull httpd
+podman run -d --name apachecontainer httpd
+podman ps -a
+podman inspect apachecontainer
+podman restart apachecontainer
+podman ps -a
+podman logs apachecontainer
+podman rm -f apachecontainer
+podman pull mysql
+podman run -d --name mysqlcontainer -e MYSQL_ROOT_PASSWORD=redhat mysql
+podman exec -it mysqlcontainer bash
+mysql -u root -p
+(give redhat password)
+show databases;
+exit
+exit
+podman ps -a
+podman rm -f mysqlcontainer
+podman rm -f $(podman ps -a -q)
+podman system df

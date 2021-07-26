@@ -51,3 +51,21 @@ podman run -d --name apachecontainer httpd
 podman cp apachecontainer:/usr/local/apache2/conf .
 ls
 podman rm -f apachecontainer
+
+podman run -itd --name nginxcontainer nginx
+podman ps -a
+podman export <containerid of nginx> > a.tar
+mkdir kushal
+mv a.tar kushal
+cd kushal
+tar -xvf a.tar
+ls
+podman rm -f nginxcontainer
+
+podman run -itd --name centoscontainer centos
+podman diff centoscontainer
+podman exec -it centoscontainer bash
+touch abc.txt
+exit
+podman diff centoscontainer
+podman rm -f centoscontainer

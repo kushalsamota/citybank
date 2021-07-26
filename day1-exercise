@@ -30,7 +30,7 @@ podman ps -a
 podman rm -f mysqlcontainer
 podman rm -f $(podman ps -a -q)
 podman system df
-
+============================================
 podman run -d --name apachecontainer httpd
 podman exec -it apachecontainer bash
 hostname
@@ -40,4 +40,14 @@ podman run -d --name apachecontainer --hostname apache httpd
 podman exec -it apachecontainer bash
 hostname
 exit
+podman rm -f apachecontainer
+podman run -itd --name centoscontainer centos
+podman cp /etc/passwd centoscontainer:/
+podman exec -it centoscontainer bash
+ls /
+exit
+podman rm -f centoscontainer
+podman run -d --name apachecontainer httpd
+podman cp apachecontainer:/usr/local/apache2/conf .
+ls
 podman rm -f apachecontainer

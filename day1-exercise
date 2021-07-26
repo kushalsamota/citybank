@@ -69,3 +69,10 @@ touch abc.txt
 exit
 podman diff centoscontainer
 podman rm -f centoscontainer
+
+podman run -d --name apachecontainer httpd
+podman top apachecontainer
+podman rm -f apachecontainer
+podman run -itd --name centoscontainer centos
+podman top centoscontainer
+podman rm -f centoscontainer

@@ -1,0 +1,11 @@
+podman ps -a
+podman images
+podman run -d --name apachecontainer -p 80:80 httpd
+yum install net-tools -y
+netstat -tulpn | grep -i listen
+podman inspect apachecontainer | grep -i ip
+podman ps -a
+curl localhost
+podman rm -f apachecontainer
+podman run -d --name apachecontainer -p 82:80 httod
+netstat -tulpn | grep -i ip

@@ -1,3 +1,5 @@
+
+sudo su -    ==== to login with root from ec2-user
 podman ps -a
 podman images
 podman run -d --name apachecontainer -p 80:80 httpd

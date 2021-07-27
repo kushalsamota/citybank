@@ -9,3 +9,26 @@ curl localhost
 podman rm -f apachecontainer
 podman run -d --name apachecontainer -p 82:80 httod
 netstat -tulpn | grep -i ip
+ps -aux | grep conman
+curl localhost:82
+podman rm -f apachecontainer
+
+===============================
+
+podman network ls
+podman network inspect podman
+podman network create idea
+podman network create vodafone --subnet=10.2.0.0/16
+podman network ls
+podman network inspect idea | grep -i ip
+podman network inspect vodafone | grep -i ip
+podman run -itd --name idea --network idea centos
+podman run -itd --name vodafone --network vodafone centos
+podman inspect idea | grep -i ip
+podman inspect vodafone | grep -i ip
+podman exec -it idea bash
+ping vodafone ip and let me know it is pinging or not.
+exit
+podman rm -f idea vodafone
+podman network rm idea vodafone
+podman network ls

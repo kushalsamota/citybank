@@ -50,3 +50,36 @@ exit
 exit
 ls /mysqldata ==== see whether kushal folder is present or not
 podman rm -f mysql
+
+podman run -d -e MYSQL_ROOT_PASSWORD=redhat -v /mysqldata:/var/lib/mysql --name mysql mysql
+podman exec -it mysql bash
+mysql -u root -p
+give redhat
+show databases;   ==== kushal should be here
+exit
+exit
+podman rm -f mysql
+
+==============================
+
+setenforce enforcing
+podman run -d -e MYSQL_ROOT_PASSWORD=redhat -v /mysqldata:/var/lib/mysql --name mysql mysql
+podman ps ==== container will be exited as selinux is on and we have not setup the context.
+podman rm -f mysql
+podman run -d -e MYSQL_ROOT_PASSWORD=redhat -v /mysqldata:/var/lib/mysql:Z --name mysql mysql
+podman ps ==== container will be in running state
+podman rm -f mysql
+==================================
+
+setenforce permissive
+mkdir /websitedata
+cd /websitedata
+echo "<h1> Hello Everyone </h1>" > index.html
+cat index.html
+cd
+podman run -d --name apachecontainer -p 80:80 -v /websitedata:/usr/share/nginx/html docker.io/nginx
+curl localhost:80
+echo "New line" >> /websitedata/index.html
+curl localhost:80
+
+

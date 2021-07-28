@@ -90,3 +90,32 @@ backend app
  save the file.
  
 ########################################
+
+touch Dockerfile
+ls
+vim Dockerfile
+FROM centos:latest
+RUN  yum install haproxy -y
+COPY ./haproxy.cfg /etc/haproxy/haproxy.cfg
+CMD ["haproxy", "-f", "/etc/haproxy/haproxy.cfg"]
+
+save the file
+ls  == haproxy.cfg and Dockerfile must be there
+
+podman build -t haproxy:v1 .
+podman images
+podman rm -f $(podman ps -a -q)
+podman run -d --name haproxy -p 80:80 haproxy:v1
+podman run -d --name apache1 -p 8081:80 httpd
+podman exec -it apache1 bash
+echo "<h1>firstcontainer</h1>" > /usr/local/apache2/htdocs/index.html
+exit
+podman run -d --name apache2 -p 8082:80 httpd
+podman exec -it apache2 bash
+echo "<h1>secondcontainer</h1>" > /usr/local/apache2/htdocs/index.html
+exit
+podman ps ==== will see three container
+
+curl localhost  === firstcontainer
+curl localhost  === secondcontainer
+

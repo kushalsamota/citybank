@@ -1,6 +1,6 @@
 mkdir haproxy
 cd haproxy
-vim haproxy.cfg
+vim haproxy.cfg   ==== in the last of the file write the private ip of your machine.
 ####################
 #---------------------------------------------------------------------
 # Example configuration for a possible web application.  See the

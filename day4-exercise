@@ -1,0 +1,30 @@
+oc new-project <username of yours>
+oc project <username of yours>
+vim pod.yaml
+======================================
+apiVersion: v1
+kind: Pod
+metadata:
+        name: apachepod
+        namespace: <username of yours>
+        labels:
+                env: prod
+                app: apache
+spec:
+        containers:
+                - name: firstcontainer
+                  image: httpd
+                  
+=====================================
+oc create -f pod.yaml
+oc get pods
+oc get pods -o wide
+oc get pods --show-labels
+oc describe pod apachepod
+oc get pod apachepod -o yaml > pod1.yaml
+vim pod1.yaml
+exit from file
+oc delete pod apachepod
+oc get pods
+
+#########################################################

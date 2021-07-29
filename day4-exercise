@@ -13,7 +13,7 @@ metadata:
 spec:
         containers:
                 - name: firstcontainer
-                  image: httpd
+                  image: quay.io/kushalsamota/httpd
                   
 =====================================
 oc create -f pod.yaml
@@ -41,9 +41,9 @@ metadata:
 spec:
         containers:
                 - name: firstcontainer
-                  image: httpd
+                  image: quay.io/kushalsamota/httpd
                 - name: secondcontainer
-                  image: mysql
+                  image: quay.io/kushalsamota/mysql
                   env:
                           - name: MYSQL_ROOT_PASSWORD
                             value: redhat

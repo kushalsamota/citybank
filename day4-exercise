@@ -62,3 +62,30 @@ oc logs apachepod -c firstcontainer
 oc logs apachepod -c secondcontainer
 oc delete pod apachepod
 oc get pods
+
+##################################################
+vim pod.yaml
+=============================================
+apiVersion: v1
+kind: Pod
+metadata:
+        name: apachepod
+        namespace: <username of yours>
+        labels:
+                env: prod
+                app: apache
+spec:
+        volumes:
+                - name: myvol
+                  emptyDir: {}
+        containers:
+                - name: firstcontainer
+                  image: quay.io/kushalsamota/httpd
+                  volumeMounts:
+                          - name: myvol
+                            mountPath: /usr/local/apache2/htdocs
+========================================
+oc create -f pod.yaml
+oc get pods
+oc describe pod apachepod
+oc delete pod apachepod

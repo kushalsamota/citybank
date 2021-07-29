@@ -1,0 +1,13 @@
+go to jump server
+go to private ip
+sudo su -
+yum install wget -y
+wget  http://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest-4.5/openshift-client-linux-4.5.41.tar.gz
+tar -xvf openshift-client-linux-4.5.41.tar.gz
+cp oc /usr/bin/
+chmod +x /usr/bin/oc
+oc completion bash > /etc/bash_completion.d/oc
+oc ==== press double tab to see all command
+oc login -u user1 -p redhat https://api.ex288.openshiftlab.xyz:6443
+
+for user2 write user2. 

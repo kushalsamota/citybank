@@ -11,3 +11,5 @@ oc ==== press double tab to see all command
 oc login -u user1 -p redhat https://api.ex288.openshiftlab.xyz:6443
 
 for user2 write user2. 
+oc new-project something
+oc get all

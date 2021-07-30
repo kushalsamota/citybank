@@ -130,3 +130,11 @@ spec:
  oc delete service servicename
  oc delete is isname === is is image stream
  oc get all === nothing should be present in project
+ 
+ #########################
+ go to console of openshift
+ go to developer section
+ deploy a application
+ git the git url as https://github.com/kushalsamota/Openshift_PHP.git
+ select php
+ deploy and than explore all the options one by one in left side of console.

@@ -78,3 +78,41 @@ oc create secret generic mysqlpassword --from-literal=passwordofmysql=redhat
 oc create -f dep.yaml
 oc describe deployment mysql-deployment
 oc describe secret mysqlpassword
+oc delete deployment mysql-deployment
+oc delete secret mysqlpassword
+
+#####################################
+configmap
+vim dep.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+  namespace: kushal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: quay.io/kushalsamota/mysql
+        env:
+                - name: MYSQL_ROOT_PASSWORD
+                  valueFrom:
+                          configMapKeyRef:
+                                  name: mysqlpassword
+                                  key: passwordofmysql
+ 
+ oc create configmap mysqlpassword -from-literal=passwordofmysql=redhat
+ oc get configmap
+ oc describe configmap mysqlpassword
+ oc create -f dep.yaml
+ oc describe deployment mysql-deployment
+ oc delete deployment mysql-deployment
+ oc delete configmap mysqlpassword

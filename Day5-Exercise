@@ -125,4 +125,8 @@ spec:
  oc expose service <nameofservice>
  oc get route
  open route url in web browser..
- 
+ oc delete route routename
+ oc delete deployment deploymentname
+ oc delete service servicename
+ oc delete is isname === is is image stream
+ oc get all === nothing should be present in project

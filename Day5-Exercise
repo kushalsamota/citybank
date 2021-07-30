@@ -1,0 +1,43 @@
+oc project <username of yours>
+vim dep.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+  namespace: kushal
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: quay.io/kushalsamota/nginx:1.14
+        ports:
+        - containerPort: 80
+        
+oc create -f dep.yaml
+oc get all
+oc set image deployment nginx-deployment nginx=quay.io/kushalsamota/nginx:1.14 --record
+oc rollout history deployment nginx-deployment
+oc get all
+oc set image deployment nginx-deployment nginx=quay.io/kushalsamota/nginx:1.15 --record
+oc rollout history deployment nginx-deployment
+oc get all
+oc set image deployment nginx-deployment nginx=quay.io/kushalsamota/nginx:1.16 --record
+oc rollout history deployment nginx-deployment
+oc get all
+oc set image deployment nginx-deployment nginx=quay.io/kushalsamota/nginx:1.17 --record
+oc rollout history deployment nginx-deployment
+oc get all
+oc rollout undo deployment nginx-deployment --to-revision=2
+oc rollout history deployment nginx-deployment
+
+oc delete deployment nginx-deployment

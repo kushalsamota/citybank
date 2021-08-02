@@ -96,4 +96,17 @@ oc get all --- must be empty
 done!!
 
 #############################################
-oc delete
+go on console
+go in developer section
+go on topology
+go on from template
+click on cakephp with php
+deploy that.
+go to administrator
+go to project
+go to route
+click on url whether it is accessible or not..
+
+##########################################
+
+

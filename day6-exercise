@@ -88,4 +88,12 @@ oc expose service rsvp
 oc get route
 open the url in browser
 
+oc delete deployment rsvp
+oc delete deployment rsvp-db
+oc delete service mongodb
+oc delete service rsvp
+oc get all --- must be empty
 done!!
+
+#############################################
+oc delete
